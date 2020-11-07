@@ -367,6 +367,10 @@ const mastermind = (guess) => {
     for(let i = 0; i <solutionBalls.length; i++) {
       solutionBalls[i].classList.remove("disguised-ball")
     }
+    for(let i = 0; i<4; i++){
+      pegsArray[currentRow][i].classList.remove("peg-blue")
+      pegsArray[currentRow][i].classList.add("peg-green")
+    }
     
     
     solution = '';

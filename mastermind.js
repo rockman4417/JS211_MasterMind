@@ -227,9 +227,12 @@ for(let i =0; i <4; i++) {
 guess = guess.join("")
 console.log("guess" , guess)
 
-mastermind(guess)
-moveUpRow()
+mastermind(guess) 
+if(currentRow !== 9) {
+  moveUpRow()
 clearBoard()
+}
+
 
     
 }
@@ -312,12 +315,14 @@ const colorizePegs = () => {
 
 
 const generateHint = (guess) =>  {
-  
+  console.log("guess", guess)
+  solutionArray = solution.split("")
   let hint
-  correctLetters = 0
-  correctLetterLocations = 0
+   correctLetters = 0
+   correctLetterLocations = 0
   console.log("solution", solution)
   console.log("solutionarray" ,solutionArray)
+  
   guessArray = guess.split("")
   console.log("guess" , guess)
   console.log("guessarray" , guessArray)
@@ -368,7 +373,7 @@ const mastermind = (guess) => {
     board = []
     
   }
-  else if (board.length === 10) {
+  else if (currentRow === 9) {
     console.log("You ran out of turns! The solution was " + solution) 
     alerts[0].innerHTML = "YOU RAN OUT OF TURNS!  THE SOLUTION WAS " + solution
     headerContainer[0].classList.remove("red-box-shadow")

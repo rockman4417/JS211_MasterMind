@@ -207,7 +207,6 @@ h1 {
   height: 705px;
   width: 387px;
   border: 3px solid rgba(0, 0, 0, 0.904);
-  box-shadow: 0 0 10px 10px rgba(223, 36, 36, 0.644);
 }
 
 .drop-circle {
@@ -283,11 +282,11 @@ h1 {
 }
 
 .purple-box-shadow {
-  text-shadow: 2px 2px 3px rgb(162, 0, 255);
+  box-shadow: 0 0 10px 10px rgba(148, 36, 223, 0.644);
 }
 
 .purple-text-shadow {
-  box-shadow: 0 0 10px 10px rgba(148, 36, 223, 0.644);
+  text-shadow: 2px 2px 3px rgb(162, 0, 255);
 }
 
 .peg-blue {

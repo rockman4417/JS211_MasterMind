@@ -375,7 +375,7 @@ const mastermind = (guess) => {
   }
   else if (currentRow === 9) {
     console.log("You ran out of turns! The solution was " + solution) 
-    alerts[0].innerHTML = "YOU RAN OUT OF TURNS!  THE SOLUTION WAS " + solution
+    alerts[0].innerHTML = "YOU RAN OUT OF TURNS!"
     headerContainer[0].classList.remove("red-box-shadow")
     headerContainer[0].classList.remove("red-text-shadow")
     headerContainer[0].classList.add("purple-box-shadow")
@@ -440,3 +440,5 @@ function onDrop(event) {
 }
 
 //////////////////////////////////////////////////////////////////
+
+resetGame()

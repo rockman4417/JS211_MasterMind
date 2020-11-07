@@ -28,7 +28,7 @@ let guessedBallsArray = []
 let draggableBalls = document.getElementsByClassName("draggable")
 
 let pegsCollection = document.getElementsByClassName("pegscript")
-console.log(pegsCollection)
+
 
 let pegsArray = [[],[],[],[],[],[],[],[],[],[]]
 
@@ -43,8 +43,7 @@ for(let i = 0; i < 10 ; i++){
     pegsCollection[0].classList.remove("pegscript")
     pegsArray[i].push(pegsCollection[0])
     pegsCollection[0].classList.remove("pegscript")
-    console.log(pegsCollection)
-    console.log(pegsArray)
+    
 }
 
 let pegsCollectionRefill = document.getElementsByClassName("peg")
@@ -52,11 +51,12 @@ for (let i = 0; i < pegsCollectionRefill.length; i++) {
     pegsCollectionRefill[i].classList.add("pegscript")
 }
 pegsArray.reverse()
-console.log("pegscollection",pegsCollection)
-console.log("pegsarray" , pegsArray)
+
 
 //////////////////////////////////////////////////
 }
+
+pegsPush()
 
 const resetPegs = () => {
     for(let i = 0; i <pegsCollection.length; i++) {
@@ -75,11 +75,30 @@ let guess = []
 let guessArray
 let solution
 let solutionArray
+let correctLetters = 0
+let correctLetterLocations = 0
 
 const printBoard = () =>  {
   for (let i = 0; i < board.length; i++) {
     console.log(board[i]);
   }
+}
+
+
+const turnPegsBlue = () => {
+  //CLEARING THE PEGS//
+for(let i = 0; i<10 ; i++) {
+
+  for(let x = 0; x<4; x++){
+    pegsArray[i][x].classList.remove("peg-yellow")
+    pegsArray[i][x].classList.remove("peg-green")
+    pegsArray[i][x].classList.add("peg-blue")
+  }
+  // pegsCollection[i].classList.remove("peg-yellow")
+  // pegsCollection[i].classList.remove("peg-green")
+  // pegsCollection[i].classList.add("peg-blue")
+  ////////////////////
+}
 }
 
 
@@ -98,6 +117,7 @@ const clearBoard = () => {
     for(i = 0; i < draggableBalls.length ; i++) {
         draggableBalls[i].setAttribute("draggable", true)
     }
+
 }
 
 const resetGame = () => {
@@ -116,6 +136,7 @@ const resetGame = () => {
     resetRows()
     generateSolution()
     populateSolutionDiv()
+    turnPegsBlue()
 }
 
 const resetAllValues = () => {
@@ -240,7 +261,6 @@ for(let i = 0; i < 4; i++) {
     console.log("i",i)
     console.log(rows[currentRow].children[i])
     rows[currentRow].children[i].children[0].classList.add('hide')
-    console.log("index hidden!")
     rows[currentRow +1].children[i].children[0].classList.remove('hide')
     rows[currentRow +1].children[i].children[0].appendChild(dropCirclesArray[i])
     
@@ -260,16 +280,34 @@ currentRow +=1
 
 //moving the black drop circles to the next row
 
+}
+
+const colorizePegs = () => {
+  "colorizing pegs!"
+  for (let i = 0; i< correctLetters; i ++){
+    console.log("peg", pegsArray[currentRow][i])
+    pegsArray[currentRow][i].classList.remove("peg-blue")
+    pegsArray[currentRow][i].classList.add("peg-yellow")
+
+  }
+
+  for (let i = 0; i < correctLetterLocations ; i++) {
+    console.log("peg for green peg",pegsArray[currentRow][i+ correctLetters])
+    pegsArray[currentRow][i+ correctLetters].classList.remove("peg-blue")
+    pegsArray[currentRow][i+ correctLetters].classList.add("peg-green")
+  }
 
 
 
 }
 
+
+
 const generateHint = (guess) =>  {
   
   let hint
-  let correctLetters = 0
-  let correctLetterLocations = 0
+  correctLetters = 0
+  correctLetterLocations = 0
   console.log("solution", solution)
   console.log("solutionarray" ,solutionArray)
   guessArray = guess.split("")
@@ -287,7 +325,6 @@ const generateHint = (guess) =>  {
   for(let i = 0; i <solutionArray.length; i++) {
     
     let targetIndex = solutionArray.indexOf(guessArray[i])
-    console.log("targetindex" , targetIndex)
     console.log(guessArray[i])
     if(targetIndex > -1) {
       correctLetters += 1
@@ -298,7 +335,8 @@ const generateHint = (guess) =>  {
   console.log("correctlocations" , correctLetterLocations)
   console.log("correctletters" , correctLetters)
   hint = correctLetters + "-" + correctLetterLocations
-    board.push(guess + hint)
+    board.push(guess + "hint" , hint)
+    colorizePegs()
     
 }
 
@@ -336,6 +374,7 @@ const mastermind = (guess) => {
     generateHint(guess)
     console.log("Guess again!" + board)
     alerts[0].innerHTML = "GUESS AGAIN!"
+    
   }
 }
 
@@ -369,7 +408,7 @@ function onDrop(event) {
     clonedBall.setAttribute("draggable", false)
     draggableElement.setAttribute("draggable", false)
     clonedBallsArray.push(clonedBall)
-    console.log(clonedBall)
+    
 
     const dropzone = event.target;
     // console.log("dropzone" , dropzone)

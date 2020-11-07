@@ -102,6 +102,11 @@ for(let i = 0; i<10 ; i++) {
 }
 
 
+const disguiseSolutionBalls = () => {
+
+}
+
+
 
 const clearBoard = () => {
 //PUTTING THE DRAGGABLE BALLS BACK IN THEIR STARTING PLACE//
@@ -191,6 +196,9 @@ const populateSolutionDiv = () => {
 //MAKING THE SOLUTION BALLS VISIBLE AND MOVING THEM TO THE SOLUTION CONTAINER//
     console.log("generating solution balls!")
     for(let i = 0; i <solutionBalls.length; i ++) {
+      console.log("starting the for loo[p")
+      console.log("disguising balls")
+        solutionBalls[i].classList.add("disguised-ball")
         solutionBalls[i].classList.remove("hide")
         document.getElementById('solution').appendChild(solutionBalls[i])
     }
@@ -351,6 +359,9 @@ const mastermind = (guess) => {
     headerContainer[0].classList.add("green-text-shadow")
     gameElement[0].classList.remove("red-box-shadow")
     gameElement[0].classList.add("green-box-shadow")
+    for(let i = 0; i <solutionBalls.length; i++) {
+      solutionBalls[i].classList.remove("disguised-ball")
+    }
     
     
     solution = '';

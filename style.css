@@ -13,7 +13,7 @@ body {
   height: 50px;
   width: 382px;
   border: 1px solid black;
-  
+
   background: linear-gradient(#64646498, #b3b8f3);
 
   display: flex;
@@ -308,4 +308,8 @@ h1 {
 
 .opacity {
   background: linear-gradient(#64646481, #b3b8f378);
+}
+
+.disguised-ball {
+  background: linear-gradient(#393939, #9198e5);
 }

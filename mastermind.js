@@ -19,6 +19,7 @@ for(let i = 0; i < rowsCollection.length; i++) {
 }
 rows.reverse()
 console.log(rows)
+let eyeBalls = document.getElementsByClassName("fas")
 let currentRow = 0
 let alerts = document.getElementsByTagName('p')
 let headerContainer = document.getElementsByClassName("header-container")
@@ -106,6 +107,16 @@ const disguiseSolutionBalls = () => {
 
 }
 
+// const clearBoardAndNodes = () =>{
+//   clearBoard()
+//   for(i = 0; i<4; i ++){
+//     if(rows[currentRow].children[i].children[1]){
+//       rows[currentRow].children[i].removeChild(rows[currentRow].children[i].children[1])
+//     }
+    
+//   }
+
+// }
 
 
 const clearBoard = () => {
@@ -122,6 +133,7 @@ const clearBoard = () => {
     for(i = 0; i < draggableBalls.length ; i++) {
         draggableBalls[i].setAttribute("draggable", true)
     }
+  
 
 }
 
@@ -142,6 +154,10 @@ const resetGame = () => {
     generateSolution()
     populateSolutionDiv()
     turnPegsBlue()
+    for(let i = 0; i <eyeBalls.length; i++){
+      eyeBalls[i].classList.add("fa-eye")
+    }
+    
 }
 
 const resetAllValues = () => {
@@ -210,6 +226,8 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+
+//EVENT LISTENER TO CHECK THE GUESS//
 const checkGuess = () => {
 console.log("checking guess!")
 //convert guess to an array with split
@@ -233,10 +251,9 @@ if(currentRow !== 9) {
 clearBoard()
 }
 
-
-    
 }
 
+////////////////////////////////////
 const resetRows = () => {
 
     currentRow = 0
@@ -367,6 +384,9 @@ const mastermind = (guess) => {
     for(let i = 0; i <solutionBalls.length; i++) {
       solutionBalls[i].classList.remove("disguised-ball")
     }
+    for(let i = 0; i <eyeBalls.length; i++){
+      eyeBalls[i].classList.remove("fa-eye")
+    }
     for(let i = 0; i<4; i++){
       pegsArray[currentRow][i].classList.remove("peg-blue")
       pegsArray[currentRow][i].classList.add("peg-green")
@@ -380,12 +400,19 @@ const mastermind = (guess) => {
   else if (currentRow === 9) {
     console.log("You ran out of turns! The solution was " + solution) 
     alerts[0].innerHTML = "YOU RAN OUT OF TURNS!"
+    for(let i = 0; i <eyeBalls.length; i++){
+      eyeBalls[i].classList.remove("fa-eye")
+    }
+    for(let i = 0; i <solutionBalls.length; i++) {
+      solutionBalls[i].classList.remove("disguised-ball")
+    }
     headerContainer[0].classList.remove("red-box-shadow")
     headerContainer[0].classList.remove("red-text-shadow")
     headerContainer[0].classList.add("purple-box-shadow")
     headerContainer[0].classList.add("purple-text-shadow")
     gameElement[0].classList.remove("red-box-shadow")
     gameElement[0].classList.add("purple-box-shadow")
+    generateHint(guess)
     solution = '';
     board = []
   }
@@ -434,7 +461,9 @@ function onDrop(event) {
     // console.log("dropzone" , dropzone)
     dropzone.appendChild(draggableElement);
     const parent = dropzone.parentElement
-
+    console.log(parent)
+    
+    
     parent.appendChild(clonedBall)
 
 

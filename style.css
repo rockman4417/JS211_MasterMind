@@ -76,6 +76,9 @@ h1 {
   border-radius: 50%;
   box-shadow: 0 0 5px 1px rgb(255, 255, 255);
   z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .box:hover {
@@ -310,5 +313,18 @@ h1 {
 }
 
 .disguised-ball {
-  background: linear-gradient(#c2bbbb, #363535);
+  background: #1a2a6c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #fdbb2d,
+    #b21f1f,
+    #1a2a6c
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #fdbb2d,
+    #b21f1f,
+    #1a2a6c
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  box-shadow: 0 0 5px 1px rgba(233, 23, 23, 0.904);
 }
